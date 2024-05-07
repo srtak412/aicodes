@@ -32,6 +32,18 @@ class Graph:
                         return True
         return False
         
+    def recursiveDFS(self, source, visited, key, path):
+        path.append(source)
+        if source == key:
+            print("Traversal path:", *path)
+            return True
+        visited[source] = True
+        for node in self.adjList[source]:
+            if not visited[node] and self.recursiveDFS(node, visited, key, path):
+                return True
+        path.pop()
+        return False
+        
 vertices = 6
 graph = Graph(vertices)
 
